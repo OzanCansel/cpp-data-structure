@@ -1,4 +1,4 @@
-CXX_FLAGS= -Wall -g
+CXX_FLAGS= -Wall -g -std=c++17
 CXX=g++
 CFLAGS= -Wall -g
 BUILD_DIR= ./build
