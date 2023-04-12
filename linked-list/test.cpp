@@ -135,4 +135,29 @@ UTEST(linked_list, insert)
     EXPECT_EQ(l.at(1) , 1);
 }
 
+UTEST(linked_list, find)
+{
+    linked_list<int> l;
+
+    l.push_back(1);
+    l.push_back(2);
+
+    auto result = l.find_if(
+        [](int val){
+            return val == 1;
+        }
+    );
+
+    ASSERT_TRUE(result);
+    EXPECT_EQ(*result, 1);
+
+    result = l.find_if(
+        [](int val){
+            return val == -1;
+        }
+    );
+
+    ASSERT_FALSE(result);
+}
+
 UTEST_MAIN();

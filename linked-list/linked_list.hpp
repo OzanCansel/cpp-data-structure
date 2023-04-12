@@ -14,6 +14,9 @@ public:
     void erase(const T& val);
     bool empty() const;
     size_t size() const;
+
+    template<typename Predicate>
+    const T* find_if(Predicate&& value) const;
     T at(size_t idx) const;
     void print() const;
 

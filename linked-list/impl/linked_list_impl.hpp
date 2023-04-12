@@ -96,6 +96,24 @@ linked_list<T>::insert(T val, size_t idx)
 }
 
 template<typename T>
+template<typename Predicate>
+const T*
+linked_list<T>::find_if(Predicate&& predicate) const
+{
+    auto curr { m_head };
+
+    while (curr)
+    {
+        if (predicate(curr->value))
+            return &curr->value;
+
+        curr = curr->next;
+    }
+
+    return nullptr;
+}
+
+template<typename T>
 void
 linked_list<T>::erase(const T& val)
 {

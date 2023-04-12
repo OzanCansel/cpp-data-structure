@@ -23,12 +23,17 @@ jobs:
             sudo apt update
             sudo apt install -y build-essential
 
-      - name: Build
+      - name: linked-list
         run: |
           cd linked-list
-          make build_test
+          make
 
-      - name: Test
+      - name: heap
         run: |
-          cd linked-list
-          make test
+          cd heap
+          make
+
+      - name: hash-map
+        run: |
+          cd hash-map
+          make
