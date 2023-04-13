@@ -21,7 +21,7 @@ jobs:
       - name: Dependencies
         run: |
             sudo apt update
-            sudo apt install -y build-essential
+            sudo apt install -y build-essential valgrind
 
       - name: linked-list
         run: |
@@ -37,3 +37,18 @@ jobs:
         run: |
           cd hash-map
           make
+
+      - name: linked-list[valgrind]
+        run: |
+          cd linked-list
+          valgrind --leak-check=full --error-exitcode=1 ./build/test
+
+      - name: heap-leak[valgrind]
+        run: |
+          cd heap
+          valgrind --leak-check=full --error-exitcode=1 ./build/test
+
+      - name: hash-map[valgrind]
+        run: |
+          cd hash-map
+          valgrind --leak-check=full --error-exitcode=1 ./build/test
