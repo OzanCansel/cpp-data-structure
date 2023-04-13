@@ -1,6 +1,68 @@
 #include "utest.h"
 #include "linked_list.hpp"
 
+UTEST(linked_list, copy_constructor)
+{
+    linked_list<int> x;
+    linked_list<int> y { x };
+
+    EXPECT_EQ(x.size(), size_t(0));
+    EXPECT_EQ(y.size(), size_t(0));
+
+    x.push_back(1)
+     .push_back(2);
+
+    EXPECT_EQ(x.size(), size_t(2));
+
+    EXPECT_EQ(linked_list<int>{ x }.size(), size_t(2));
+}
+
+UTEST(linked_list, move_constructor)
+{
+    linked_list<int> x;
+
+    x.push_back(1);
+
+    EXPECT_EQ(x.size(), size_t(1));
+
+    linked_list<int> y { std::move(x) };
+
+    EXPECT_EQ(x.size(), size_t(0));
+    EXPECT_EQ(y.size(), size_t(1));
+}
+
+UTEST(linked_list, copy_assignment)
+{
+    linked_list<int> x;
+    linked_list<int> y;
+
+    x.push_back(1);
+
+    EXPECT_EQ(x.size(), size_t(1));
+    EXPECT_EQ(y.size(), size_t(0));
+
+    y = x;
+
+    EXPECT_EQ(x.size(), size_t(1));
+    EXPECT_EQ(y.size(), size_t(1));
+}
+
+UTEST(linked_list, move_assignment)
+{
+    linked_list<int> x;
+    linked_list<int> y;
+
+    x.push_back(1);
+
+    EXPECT_EQ(x.size(), size_t(1));
+    EXPECT_EQ(y.size(), size_t(0));
+
+    y = std::move(x);
+
+    EXPECT_EQ(x.size(), size_t(0));
+    EXPECT_EQ(y.size(), size_t(1));
+}
+
 UTEST(linked_list, push_front)
 {
     linked_list<int> l;

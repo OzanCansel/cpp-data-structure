@@ -8,6 +8,57 @@ linked_list<T>::linked_list()
 {}
 
 template<typename T>
+linked_list<T>::~linked_list()
+{
+    auto curr { m_head };
+
+    while (curr)
+    {
+        auto next { curr->next };
+
+        delete curr;
+
+        curr = next;
+    }
+}
+
+template<typename T>
+linked_list<T>::linked_list(const linked_list& x)
+{
+    m_head = nullptr;
+
+    for (size_t i = 0; i < x.size(); ++i)
+        push_back(x.at(i));
+}
+
+template<typename T>
+linked_list<T>::linked_list(linked_list&& x)
+{
+    m_head = x.m_head;
+    x.m_head = nullptr;
+}
+
+template<typename T>
+linked_list<T>&
+linked_list<T>::operator=(const linked_list<T>& x)
+{
+    for (size_t i = 0; i < x.size(); ++i)
+        push_back(x.at(i));
+
+    return *this;
+}
+
+template<typename T>
+linked_list<T>&
+linked_list<T>::operator=(linked_list<T>&& x)
+{
+    m_head = x.m_head;
+    x.m_head = nullptr;
+
+    return *this;
+}
+
+template<typename T>
 linked_list<T>&
 linked_list<T>::push_front(T val)
 {

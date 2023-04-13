@@ -8,6 +8,12 @@ class linked_list
 public:
 
     linked_list();
+    ~linked_list();
+    linked_list(const linked_list&);
+    linked_list(linked_list&&);
+    linked_list& operator=(const linked_list&);
+    linked_list& operator=(linked_list&&);
+
     linked_list& push_front(T val);
     linked_list& push_back(T val);
     void insert(T val, size_t idx);
