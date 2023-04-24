@@ -14,6 +14,11 @@ UTEST(stack, test)
     s.pop();
 
     EXPECT_EQ(s.top(), 1);
+    EXPECT_FALSE(s.empty());
+
+    s.pop();
+
+    EXPECT_TRUE(s.empty());
 }
 
 

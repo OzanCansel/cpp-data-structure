@@ -34,3 +34,10 @@ stack<T>::size() const
 {
     return m_list.size();
 }
+
+template<typename T>
+bool
+stack<T>::empty() const
+{
+    return size() == 0;
+}

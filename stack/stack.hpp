@@ -12,6 +12,7 @@ public:
     const T& top() const;
     void pop();
     size_t size() const;
+    bool empty() const;
 
 private:
 

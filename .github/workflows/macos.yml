@@ -36,3 +36,8 @@ jobs:
         run: |
           cd stack
           make
+
+      - name: queue
+        run: |
+          cd queue
+          make

@@ -43,6 +43,11 @@ jobs:
           cd stack
           make
 
+      - name: queue
+        run: |
+          cd queue
+          make
+
       - name: linked-list[valgrind]
         run: |
           cd linked-list
@@ -61,4 +66,9 @@ jobs:
       - name: stack[valgrind]
         run: |
           cd stack
+          valgrind --leak-check=full --error-exitcode=1 ./build/test
+
+      - name: queue[valgrind]
+        run: |
+          cd queue
           valgrind --leak-check=full --error-exitcode=1 ./build/test
