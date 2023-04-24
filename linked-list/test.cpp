@@ -147,6 +147,25 @@ UTEST(linked_list, erase)
     EXPECT_EQ(l.size(), size_t(0));
 }
 
+UTEST(linked_list, erase_at)
+{
+    linked_list<int> l;
+
+    l.push_back(1)
+     .push_back(2)
+     .push_back(3);
+
+    l.erase_at(2);
+
+    EXPECT_EQ(l.size(), size_t(2));
+    EXPECT_EQ(l.at(1) , 2);
+
+    l.erase_at(0);
+
+    EXPECT_EQ(l.size(), size_t(1));
+    EXPECT_EQ(l.at(0) , 2);
+}
+
 UTEST(linked_list, empty)
 {
     linked_list<int> l;

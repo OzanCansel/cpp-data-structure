@@ -18,12 +18,14 @@ public:
     linked_list& push_back(T val);
     void insert(T val, size_t idx);
     void erase(const T& val);
+    void erase_at(size_t idx);
     bool empty() const;
     size_t size() const;
 
     template<typename Predicate>
     const T* find_if(Predicate&& value) const;
-    T at(size_t idx) const;
+    const T& at(size_t idx) const;
+    T& at(size_t idx);
     void print() const;
 
 private:

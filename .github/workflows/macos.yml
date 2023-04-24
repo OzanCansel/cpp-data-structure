@@ -31,3 +31,8 @@ jobs:
         run: |
           cd hash-map
           make
+
+      - name: stack
+        run: |
+          cd stack
+          make

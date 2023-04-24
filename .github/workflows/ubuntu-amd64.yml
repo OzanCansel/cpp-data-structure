@@ -38,6 +38,11 @@ jobs:
           cd hash-map
           make
 
+      - name: stack
+        run: |
+          cd stack
+          make
+
       - name: linked-list[valgrind]
         run: |
           cd linked-list
@@ -51,4 +56,9 @@ jobs:
       - name: hash-map[valgrind]
         run: |
           cd hash-map
+          valgrind --leak-check=full --error-exitcode=1 ./build/test
+
+      - name: stack[valgrind]
+        run: |
+          cd stack
           valgrind --leak-check=full --error-exitcode=1 ./build/test

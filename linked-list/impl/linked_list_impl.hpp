@@ -191,6 +191,33 @@ linked_list<T>::erase(const T& val)
 }
 
 template<typename T>
+void
+linked_list<T>::erase_at(size_t idx)
+{
+    node* prev { nullptr };
+    node* curr { m_head };
+
+    while (curr) {
+        if (idx == 0)
+            break;
+
+        prev = curr;
+        curr = curr->next;
+        idx--;
+    }
+
+    if (curr)
+    {
+        if (!prev)
+            m_head = curr->next;
+        else
+            prev->next = curr->next;
+
+        delete curr;
+    }
+}
+
+template<typename T>
 bool
 linked_list<T>::empty() const
 {
@@ -214,7 +241,7 @@ linked_list<T>::size() const
 }
 
 template<typename T>
-T
+const T&
 linked_list<T>::at(size_t idx) const
 {
     auto curr { m_head };
@@ -232,6 +259,15 @@ linked_list<T>::at(size_t idx) const
         throw std::out_of_range { "'idx' is out of bound." };
 
     return curr->value;
+}
+
+template<typename T>
+T&
+linked_list<T>::at(size_t idx)
+{
+    return const_cast<T&>(
+        const_cast<const linked_list<T>*>(this)->at(idx)
+    );
 }
 
 template<typename T>
